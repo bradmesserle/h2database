@@ -3573,6 +3573,12 @@ public class Parser {
             case '_':
                 type = CHAR_NAME;
                 break;
+                
+            case '#':
+            	if (database.getMode().supportPoundSymbolForColumnNames){
+            		type = CHAR_NAME;
+            		break;
+            	}
             default:
                 if (c >= 'a' && c <= 'z') {
                     if (identifiersToUpper) {

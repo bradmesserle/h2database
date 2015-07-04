@@ -77,7 +77,7 @@ public class Mode {
      * [OFFSET .. ROW|ROWS] [FETCH FIRST .. ROW|ROWS ONLY]
      * as an alternative for LIMIT .. OFFSET.
      */
-    public boolean supportOffsetFetch = Constants.VERSION_MINOR >= 4 ? true : false;
+    public boolean supportOffsetFetch = Constants.VERSION_MINOR >= 4;
 
     /**
      * The system columns 'CTID' and 'OID' are supported.
@@ -131,6 +131,11 @@ public class Mode {
      * can set the isolation level using WITH {RR|RS|CS|UR}
      */
     public boolean isolationLevelInSelectOrInsertStatement;
+    
+    /**
+     * Support the # for column names
+     */
+    public boolean supportPoundSymbolForColumnNames;
 
     /**
      * MySQL style INSERT ... ON DUPLICATE KEY UPDATE ...
@@ -173,6 +178,7 @@ public class Mode {
         mode.uniqueIndexSingleNull = true;
         mode.allowPlusForStringConcat = true;
         mode.swapConvertFunctionParameters = true;
+        mode.supportPoundSymbolForColumnNames = true;
         add(mode);
 
         mode = new Mode("MySQL");
@@ -187,6 +193,7 @@ public class Mode {
         mode.convertOnlyToSmallerScale = true;
         mode.uniqueIndexSingleNullExceptAllColumnsAreNull = true;
         mode.treatEmptyStringsAsNull = true;
+        mode.supportPoundSymbolForColumnNames = true;
         add(mode);
 
         mode = new Mode("PostgreSQL");
